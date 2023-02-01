@@ -22,6 +22,6 @@ class Gestion extends Model
     }
 
     public function origenLlamada() {
-        return $this->belongsTo(TipoLlamada::class);
+        return $this->belongsTo(OrigenLlamada::class);
     }
 }

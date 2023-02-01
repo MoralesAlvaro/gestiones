@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\GestionLista;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +25,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::middleware([
+    'auth',
+    config('jetstream.auth_session'),
+])->group(function () {
+    Route::get('/gestiones', GestionLista::class)->name('gestiones');
 });

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('tipo_llamada_id');
             $table->unsignedInteger('origen_llamada_id');
             $table->string('nombre');
-            $table->string('telefono', 8);
+            $table->string('telefono', 9);
             $table->string('gestion');
 
             $table->timestamps();
