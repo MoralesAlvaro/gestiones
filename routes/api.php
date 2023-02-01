@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TipoLlamadaController;
 use App\Http\Controllers\OrigenLlamadaController;
+use App\Http\Controllers\GestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,14 @@ Route::group([
     Route::get('show/{id}', [origenLlamadaController::class, 'show']);
     Route::put('update/{id}', [origenLlamadaController::class, 'update']);
     Route::delete('delete/{id}', [origenLlamadaController::class, 'destroy']);
+});
+
+Route::group([
+    'prefix' => 'management'
+], function () {
+    Route::get('all', [GestionController::class, 'index']);
+    Route::post('add', [GestionController::class, 'store']);
+    Route::get('show/{id}', [GestionController::class, 'show']);
+    Route::put('update/{id}', [GestionController::class, 'update']);
+    Route::delete('delete/{id}', [GestionController::class, 'destroy']);
 });
