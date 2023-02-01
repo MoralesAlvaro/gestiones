@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\GestionLista;
 use App\Http\Livewire\OrigenLlamadaLista;
+use App\Http\Livewire\TipoLlamadaLista;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,5 +35,6 @@ Route::middleware([
 ])->group(function () {
     Route::get('/gestiones', GestionLista::class)->name('gestiones');
     Route::get('/origenLlamadas', OrigenLlamadaLista::class)->name('origenLlamadas');
+    Route::get('/tipoLlamadas', TipoLlamadaLista::class)->name('tipoLlamadas');
 
 });

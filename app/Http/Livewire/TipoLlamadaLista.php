@@ -4,15 +4,15 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\OrigenLlamada;
+use App\Models\TipoLlamada;
 
-class OrigenLlamadaLista extends Component
+class TipoLlamadaLista extends Component
 {
     use WithPagination;
 
     public $search_term;
     public $new_modal, $show_delete, $show_edit;
-    public $origen_llamada, $origen;
+    public $tipo_llamada, $tipo;
 
     public function mount()
     {
@@ -22,7 +22,7 @@ class OrigenLlamadaLista extends Component
     }
 
     protected $rules = [
-        'origen_llamada' => 'required|string'
+        'tipo_llamada' => 'required|string'
     ];
 
     public function showNew()
@@ -33,38 +33,38 @@ class OrigenLlamadaLista extends Component
     public function actionSaveModal()
     {
         $validado = $this->validate();
-        $gestion = OrigenLlamada::create([
-            'origen_llamada' => $this->origen_llamada,
+        $gestion = TipoLlamada::create([
+            'tipo_llamada' => $this->tipo_llamada,
 
         ]);
         $this->new_modal = false;
-        session()->flash('info', 'Se ha ingresado el registro!.');
+        session()->flash('info', 'Se ha ingresado el resgistro!.');
     }
 
-    public function showDeleteModal(OrigenLlamada $origen)
+    public function showDeleteModal(TipoLlamada $tipo)
     {
         $this->show_delete = true;
-        $this->origen = $origen;
+        $this->tipo = $tipo;
     }
 
     public function actionDelete()
     {
-        $this->origen->forceDelete();
+        $this->tipo->forceDelete();
         $this->show_delete = false;
         session()->flash('info', 'Operación realizada!.');
     }
 
-    public function editModal(OrigenLlamada $origenLlamada)
+    public function editModal(TipoLlamada $tipo)
     {
         $this->show_edit = true;
-        $this->origen = $origenLlamada;
-        $this->origen_llamada = $this->origen->origen_llamada;
+        $this->tipo = $tipo;
+        $this->tipo_llamada = $this->tipo->tipo_llamada;
     }
 
     public function actionUpdateModal()
     {
         $validado = $this->validate();
-        $this->origen->update($validado);
+        $this->tipo->update($validado);
         $this->show_edit = false;
         session()->flash('info', 'Operación realizada!.');
     }
@@ -72,6 +72,6 @@ class OrigenLlamadaLista extends Component
     public function render()
     {
         $search_term = '%'.$this->search_term.'%';
-        return view('livewire.origen-llamada-lista', ['data' => OrigenLlamada::where('origen_llamada','like', $search_term)->orderBy('id', 'desc')->paginate(10)]);
+        return view('livewire.tipo-llamada-lista', ['data' => TipoLlamada::where('tipo_llamada','like', $search_term)->orderBy('id', 'desc')->paginate(10)]);
     }
 }

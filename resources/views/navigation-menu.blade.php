@@ -12,6 +12,9 @@
                     <x-jet-nav-link href="{{ route('origenLlamadas') }}" :active="request()->routeIs('origenLlamadas')">
                         {{ __('Origen Llamadas') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('tipoLlamadas') }}" :active="request()->routeIs('tipoLlamadas')">
+                        {{ __('Tipo Llamadas') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -140,6 +143,9 @@
             <x-jet-responsive-nav-link href="{{ route('gestiones') }}" :active="request()->routeIs('gestiones')">
                 {{ __('Origen Llamadas') }}
             </x-jet-responsive-nav-link>
+            <x-jet-nav-link href="{{ route('tipoLlamadas') }}" :active="request()->routeIs('tipoLlamadas')">
+                {{ __('Tipo Llamadas') }}
+            </x-jet-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

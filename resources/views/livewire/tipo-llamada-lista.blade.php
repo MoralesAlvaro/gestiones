@@ -4,7 +4,7 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
             <div class="p-4 mt-4">
                 <x-jet-button class=" active:bg-gray-900" wire:click="showNew()" wire:key="new">
-                    <a>{{ __('Nuevo Origen') }}</a>
+                    <a>{{ __('Nuevo Tipo') }}</a>
                 </x-jet-button>
                 <x-search></x-search>
             </div>
@@ -13,7 +13,7 @@
                     <thead class="justify-between">
                         <tr class="bg-gray-800">
                             <th class="px-16 py-2">
-                                <span class="text-gray-300">Origen Llamada</span>
+                                <span class="text-gray-300">Tipo Llamada</span>
                             </th>
                             <th class="px-16 py-2">
                                 <span class="text-gray-300">Fecha de Registro</span>
@@ -30,7 +30,7 @@
                         @foreach ($data as $item)
                             <tr class="bg-white border-4 border-gray-200">
                                 <td>
-                                    <span class="text-center ml-2 font-semibold">{{ $item->origen_llamada }}</span>
+                                    <span class="text-center ml-2 font-semibold">{{ $item->tipo_llamada }}</span>
                                 </td>
                                 <td>
                                     <span class="text-center ml-2 font-semibold">{{ date_format($item->created_at, 'D M Y, g:m a') }}</span>
@@ -60,14 +60,14 @@
         </div>
     </div>
 
-    {{-- Nuevo Origen --}}
+    {{-- Nuevo Tipo --}}
     <form wire:submit.prevent="actionSaveModal" class="w-full " enctype="multipart/form-data">
         <x-jet-dialog-modal wire:model.defer="new_modal" maxWidth="5xl">
             <x-slot name="title">
                 <div class="my-2 py-2 px-2 bg-white rounded-lg shadow-sm space-y-6">
                     <div class="">
                         <p class="text-xl text-azul-500 font-sans md:text-2xl text-center"><strong>Ingresar
-                                Origen</strong></p>
+                                Tipo</strong></p>
                     </div>
                 </div>
             </x-slot>
@@ -83,11 +83,11 @@
 
                                     <!-- Origen Llamada -->
                                     <div class="center align-items-lg-center px-6 mt-3">
-                                        <x-jet-label for="origen_llamada" value="{{ __('Origen Llamada') }}" />
-                                        <x-jet-input id="origen_llamada" class="block mt-1 w-full" type="text"
-                                            name="origen_llamada" autocomplete="origen_llamada" wire:model.defer="origen_llamada"
+                                        <x-jet-label for="tipo_llamada" value="{{ __('Tipo Llamada') }}" />
+                                        <x-jet-input id="tipo_llamada" class="block mt-1 w-full" type="text"
+                                            name="tipo_llamada" autocomplete="tipo_llamada" wire:model.defer="tipo_llamada"
                                             placeholder="Ej: José Antonio" />
-                                        <x-jet-input-error for='origen_llamada' />
+                                        <x-jet-input-error for='tipo_llamada' />
                                     </div>
 
                                 </div>
@@ -161,7 +161,7 @@
             <x-slot name="title">
                 <div class="my-2 py-2 px-2 bg-white rounded-lg shadow-sm space-y-6">
                     <div class="">
-                        <p class="text-xl text-azul-500 font-sans md:text-2xl text-center"><strong>Editar Origen</strong></p>
+                        <p class="text-xl text-azul-500 font-sans md:text-2xl text-center"><strong>Editar Tipo</strong></p>
                     </div>
                 </div>
             </x-slot>
@@ -175,13 +175,13 @@
                             <div>
                                 <div class="grid divide-y divide-none md:w-auto">
 
-                                    <!-- Origen Llamada -->
+                                    <!-- Tipo Llamada -->
                                     <div class="center align-items-lg-center px-6 mt-3">
-                                        <x-jet-label for="origen_llamada" value="{{ __('Origen Llamada') }}" />
-                                        <x-jet-input id="origen_llamada" class="block mt-1 w-full" type="text"
-                                            name="origen_llamada" autocomplete="origen_llamada" wire:model.defer="origen_llamada"
+                                        <x-jet-label for="tipo_llamada" value="{{ __('tipo Llamada') }}" />
+                                        <x-jet-input id="tipo_llamada" class="block mt-1 w-full" type="text"
+                                            name="tipo_llamada" autocomplete="tipo_llamada" wire:model.defer="tipo_llamada"
                                             placeholder="Ej: José Antonio" />
-                                        <x-jet-input-error for='origen_llamada' />
+                                        <x-jet-input-error for='tipo_llamada' />
                                     </div>
 
                                 </div>
