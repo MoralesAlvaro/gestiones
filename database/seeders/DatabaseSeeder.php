@@ -19,9 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->truncateTables([
             'users',
             'tipo_llamadas',
+            'origen_llamadas',
         ]);
 
         $this->call(TipoLlamadaSeeder::class);
+        $this->call(OrigenLlamadaSeeder::class);
 
     }
 

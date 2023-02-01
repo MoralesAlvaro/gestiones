@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TipoLlamada;
+use App\Models\OrigenLlamada;
 use Illuminate\Http\Request;
 
-class TipoLlamadaController extends Controller
+class OrigenLlamadaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class TipoLlamadaController extends Controller
         try {
             return response()->json([
                 'success' => true ,
-                'data' => TipoLlamada::orderBy('id', 'desc')->paginate(15),
+                'data' => OrigenLlamada::orderBy('id', 'desc')->paginate(15),
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -36,17 +36,17 @@ class TipoLlamadaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'tipo_llamada' => 'required|string',
+            'origen_llamada' => 'required|string',
         ]);
 
         try {
-            $tipoLlamada = new TipoLlamada($request->all());
-            $tipoLlamada->save();
+            $origenLlamada = new OrigenLlamada($request->all());
+            $origenLlamada->save();
 
             return response()->json([
                 'success' => true,
                 'message' => 'Tipo de Llamada creado correctamente.',
-                'data' => $tipoLlamada,
+                'data' => $origenLlamada,
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
@@ -59,16 +59,16 @@ class TipoLlamadaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TipoLlamada  $tipoLlamada
+     * @param  \App\Models\OrigenLlamada  $origenLlamada
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         try {
-            $tipoLlamada = TipoLlamada::findOrFail($id);
+            $origenLlamada = OrigenLlamada::findOrFail($id);
             return response()->json([
                 'success' => true,
-                'data' => $tipoLlamada,
+                'data' => $origenLlamada,
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
@@ -82,24 +82,24 @@ class TipoLlamadaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TipoLlamada  $tipoLlamada
+     * @param  \App\Models\OrigenLlamada  $origenLlamada
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'tipo_llamada' => 'required|string',
+            'origen_llamada' => 'required|string',
         ]);
 
         try {
-            $tipoLlamada = TipoLlamada::find($id);
-            $tipoLlamada->tipo_llamada = $request->tipo_llamada;
-            $tipoLlamada->update();
+            $origenLlamada = OrigenLlamada::find($id);
+            $origenLlamada->origen_llamada = $request->origen_llamada;
+            $origenLlamada->update();
 
             return response()->json([
                 'success' => true,
                 'message' => 'Tipo de Llamada atualizado correctamente.',
-                'data' => $tipoLlamada,
+                'data' => $origenLlamada,
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
@@ -112,14 +112,14 @@ class TipoLlamadaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TipoLlamada  $tipoLlamada
+     * @param  \App\Models\OrigenLlamada  $origenLlamada
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         try {
-            $tipoLlamada = TipoLlamada::find($id);
-            $tipoLlamada->delete();
+            $origenLlamada = OrigenLlamada::find($id);
+            $origenLlamada->delete();
 
             return response()->json([
                 'success' => true,
