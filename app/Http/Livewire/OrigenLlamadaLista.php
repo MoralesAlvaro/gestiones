@@ -49,7 +49,6 @@ class OrigenLlamadaLista extends Component
 
     public function actionDelete()
     {
-        dd(count($this->origen->gestiones));
         if (count($this->origen->gestiones) > 0) {
             $this->show_delete = false;
             session()->flash('warning', 'Este registro ya se encuentra relacionado con otras entradas!.');

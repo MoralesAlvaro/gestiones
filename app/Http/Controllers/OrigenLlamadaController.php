@@ -119,12 +119,19 @@ class OrigenLlamadaController extends Controller
     {
         try {
             $origenLlamada = OrigenLlamada::find($id);
-            $origenLlamada->delete();
+            if (count($origenLlamada->gestiones) > 0) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Este registro ya se encuentra relacionado con otras entradas.',
+                ], 404);
+            }else{
+                $origenLlamada->delete();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Tipo de Llamada eliminado correctamente.',
-            ], 201);
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Tipo de Llamada eliminado correctamente.',
+                ], 201);
+            }
 
         } catch (\Throwable $th) {
             return response()->json([

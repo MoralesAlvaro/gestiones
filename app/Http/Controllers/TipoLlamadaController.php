@@ -119,12 +119,19 @@ class TipoLlamadaController extends Controller
     {
         try {
             $tipoLlamada = TipoLlamada::find($id);
-            $tipoLlamada->delete();
+            if (count($tipoLlamada->gestiones) > 0) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Este registro ya se encuentra relacionado con otras entradas.',
+                ], 404);
+            }else{
+                $tipoLlamada->delete();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Tipo de Llamada eliminado correctamente.',
-            ], 201);
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Tipo de Llamada eliminado correctamente.',
+                ], 201);
+            }
 
         } catch (\Throwable $th) {
             return response()->json([
