@@ -14,7 +14,17 @@ class TipoLlamadaController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return response()->json([
+                'success' => true ,
+                'data' => TipoLlamada::orderBy('id', 'desc')->paginate(15),
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Inaccesible.',
+            ], 404);
+        }
     }
 
     /**
@@ -25,7 +35,25 @@ class TipoLlamadaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'tipo_llamada' => 'required|string',
+        ]);
+
+        try {
+            $tipoLlamada = new TipoLlamada($request->all());
+            $tipoLlamada->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Tipo de Llamada creado correctamente.',
+                'data' => $tipoLlamada,
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Inaccesible.',
+            ], 404);
+        }
     }
 
     /**
@@ -34,9 +62,20 @@ class TipoLlamadaController extends Controller
      * @param  \App\Models\TipoLlamada  $tipoLlamada
      * @return \Illuminate\Http\Response
      */
-    public function show(TipoLlamada $tipoLlamada)
+    public function show($id)
     {
-        //
+        try {
+            $tipoLlamada = TipoLlamada::findOrFaild($id);
+            return response()->json([
+                'success' => true,
+                'data' => $tipoLlamada,
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Inaccesible.',
+            ], 404);
+        }
     }
 
     /**
@@ -46,9 +85,28 @@ class TipoLlamadaController extends Controller
      * @param  \App\Models\TipoLlamada  $tipoLlamada
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoLlamada $tipoLlamada)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'tipo_llamada' => 'required|string',
+        ]);
+
+        try {
+            $tipoLlamada = TipoLlamada::find($id);
+            $tipoLlamada->tipo_llamada = $request->tipo_llamada;
+            $tipoLlamada->update();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Tipo de Llamada atualizado correctamente.',
+                'data' => $tipoLlamada,
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Inaccesible.',
+            ], 404);
+        }
     }
 
     /**
@@ -57,8 +115,22 @@ class TipoLlamadaController extends Controller
      * @param  \App\Models\TipoLlamada  $tipoLlamada
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoLlamada $tipoLlamada)
+    public function destroy($id)
     {
-        //
+        try {
+            $tipoLlamada = TipoLlamada::find($id);
+            $tipoLlamada->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Tipo de Llamada eliminado correctamente.',
+            ], 201);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Inaccesible.',
+            ], 404);
+        }
     }
 }
