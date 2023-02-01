@@ -12,4 +12,9 @@ class OrigenLlamada extends Model
     protected $fillable = [
         'origen_llamada',
     ];
+
+    public function gestiones()
+    {
+        return $this->hasMany(Gestion::class);
+    }
 }

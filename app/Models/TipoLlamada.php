@@ -12,4 +12,9 @@ class TipoLlamada extends Model
     protected $fillable = [
         'tipo_llamada',
     ];
+
+    public function gestiones()
+    {
+        return $this->hasMany(Gestion::class);
+    }
 }

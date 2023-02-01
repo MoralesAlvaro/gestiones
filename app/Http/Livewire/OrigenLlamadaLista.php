@@ -49,9 +49,15 @@ class OrigenLlamadaLista extends Component
 
     public function actionDelete()
     {
-        $this->origen->forceDelete();
-        $this->show_delete = false;
-        session()->flash('info', 'Operación realizada!.');
+        dd(count($this->origen->gestiones));
+        if (count($this->origen->gestiones) > 0) {
+            $this->show_delete = false;
+            session()->flash('warning', 'Este registro ya se encuentra relacionado con otras entradas!.');
+        }else{
+            $this->origen->forceDelete();
+            $this->show_delete = false;
+            session()->flash('info', 'Operación realizada!.');
+        }
     }
 
     public function editModal(OrigenLlamada $origenLlamada)

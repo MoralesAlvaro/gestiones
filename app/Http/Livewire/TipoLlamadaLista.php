@@ -49,9 +49,14 @@ class TipoLlamadaLista extends Component
 
     public function actionDelete()
     {
-        $this->tipo->forceDelete();
-        $this->show_delete = false;
-        session()->flash('info', 'Operación realizada!.');
+        if (count($this->tipo->gestiones) > 0) {
+            $this->show_delete = false;
+            session()->flash('warning', 'Este registro ya se encuentra relacionado con otras entradas!.');
+        }else{
+            $this->tipo->forceDelete();
+            $this->show_delete = false;
+            session()->flash('info', 'Operación realizada!.');
+        }
     }
 
     public function editModal(TipoLlamada $tipo)
