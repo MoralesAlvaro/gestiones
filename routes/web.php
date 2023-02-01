@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\GestionLista;
+use App\Http\Livewire\OrigenLlamadaLista;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,4 +33,6 @@ Route::middleware([
     config('jetstream.auth_session'),
 ])->group(function () {
     Route::get('/gestiones', GestionLista::class)->name('gestiones');
+    Route::get('/origenLlamadas', OrigenLlamadaLista::class)->name('origenLlamadas');
+
 });

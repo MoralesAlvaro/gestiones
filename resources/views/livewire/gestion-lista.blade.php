@@ -28,6 +28,9 @@
                                 <span class="text-gray-300">Origen</span>
                             </th>
                             <th class="px-16 py-2">
+                                <span class="text-gray-300">Fecha Registro</span>
+                            </th>
+                            <th class="px-16 py-2">
                                 <span class="text-gray-300">Acciones</span>
                             </th>
                         </tr>
@@ -51,6 +54,9 @@
                                 <td>
                                     <span
                                         class="text-center ml-2 font-semibold">{{ $item->origenLlamada['origen_llamada'] }}</span>
+                                </td>
+                                <td>
+                                    <span class="text-center ml-2 font-semibold">{{ date_format($item->created_at, 'D M Y, g:m a') }}</span>
                                 </td>
                                 <td>
                                     <div class="grid grid-cols-2 items-center">

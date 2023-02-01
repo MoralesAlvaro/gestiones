@@ -9,6 +9,9 @@
                     <x-jet-nav-link href="{{ route('gestiones') }}" :active="request()->routeIs('gestiones')">
                         {{ __('Inicio') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('origenLlamadas') }}" :active="request()->routeIs('origenLlamadas')">
+                        {{ __('Origen Llamadas') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -133,6 +136,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('gestiones') }}" :active="request()->routeIs('gestiones')">
                 {{ __('Inicio') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('gestiones') }}" :active="request()->routeIs('gestiones')">
+                {{ __('Origen Llamadas') }}
             </x-jet-responsive-nav-link>
         </div>
 
