@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'origen_llamadas',
         ]);
 
+        $this->call(UserSeeder::class);
         $this->call(TipoLlamadaSeeder::class);
         $this->call(OrigenLlamadaSeeder::class);
 

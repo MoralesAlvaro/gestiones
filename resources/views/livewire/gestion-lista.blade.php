@@ -8,74 +8,88 @@
                 </x-jet-button>
                 <x-search></x-search>
             </div>
-            <div class="p-5">
-                <table class="min-w-full table-auto ">
-                    <thead class="justify-between">
-                        <tr class="bg-gray-800">
-                            <th class="px-16 py-2">
-                                <span class="text-gray-300">Nombre</span>
-                            </th>
-                            <th class="px-16 py-2">
-                                <span class="text-gray-300">Telefono</span>
-                            </th>
-                            <th class="px-16 py-2">
-                                <span class="text-gray-300">Gestion</span>
-                            </th>
-                            <th class="px-16 py-2">
-                                <span class="text-gray-300">Tipo</span>
-                            </th>
-                            <th class="px-16 py-2">
-                                <span class="text-gray-300">Origen</span>
-                            </th>
-                            <th class="px-16 py-2">
-                                <span class="text-gray-300">Fecha Registro</span>
-                            </th>
-                            <th class="px-16 py-2">
-                                <span class="text-gray-300">Acciones</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-gray-200">
-                        @foreach ($data as $item)
-                            <tr class="bg-white border-4 border-gray-200">
-                                <td>
-                                    <span class="text-center ml-2 font-semibold">{{ $item->nombre }}</span>
-                                </td>
-                                <td>
-                                    <span class="text-center ml-2 font-semibold">{{ $item->telefono }}</span>
-                                </td>
-                                <td>
-                                    <span class="text-center ml-2 font-semibold">{{ $item->gestion }}</span>
-                                </td>
-                                <td>
-                                    <span
-                                        class="text-center ml-2 font-semibold">{{ $item->tipoLlamada['tipo_llamada'] }}</span>
-                                </td>
-                                <td>
-                                    <span
-                                        class="text-center ml-2 font-semibold">{{ $item->origenLlamada['origen_llamada'] }}</span>
-                                </td>
-                                <td>
-                                    <span class="text-center ml-2 font-semibold">{{ date_format($item->created_at, 'D M Y, g:m a') }}</span>
-                                </td>
-                                <td>
-                                    <div class="grid grid-cols-2 items-center">
-                                        <div wire:click='showDeleteModal({{ $item->id }})'>
-                                            <x-button-action-delete title="Eliminar" />
-                                        </div>
-                                        <div wire:click="editModal({{ $item->id }})">
-                                            <x-button-action-edit title="Editar" />
-                                        </div>
-                                    </div>
-                                </td>
+            @if (count($data) > 0)
+                <div class="p-5">
+                    <table class="min-w-full table-auto ">
+                        <thead class="justify-between">
+                            <tr class="bg-gray-800">
+                                <th class="px-16 py-2">
+                                    <span class="text-gray-300">Nombre</span>
+                                </th>
+                                <th class="px-16 py-2">
+                                    <span class="text-gray-300">Telefono</span>
+                                </th>
+                                <th class="px-16 py-2">
+                                    <span class="text-gray-300">Gestion</span>
+                                </th>
+                                <th class="px-16 py-2">
+                                    <span class="text-gray-300">Tipo</span>
+                                </th>
+                                <th class="px-16 py-2">
+                                    <span class="text-gray-300">Origen</span>
+                                </th>
+                                <th class="px-16 py-2">
+                                    <span class="text-gray-300">Fecha Registro</span>
+                                </th>
+                                <th class="px-16 py-2">
+                                    <span class="text-gray-300">Acciones</span>
+                                </th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="px-4 py-3 text-xs font-semibold tracking-wide text-white uppercase border-none  sm:grid-cols-9">
-                    {{ $data->links() }}
+                        </thead>
+                        <tbody class="bg-gray-200">
+                            @foreach ($data as $item)
+                                <tr class="bg-white border-4 border-gray-200">
+                                    <td>
+                                        <span class="text-center ml-2 font-semibold">{{ $item->nombre }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-center ml-2 font-semibold">{{ $item->telefono }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-center ml-2 font-semibold">{{ $item->gestion }}</span>
+                                    </td>
+                                    <td>
+                                        <span
+                                            class="text-center ml-2 font-semibold">{{ $item->tipoLlamada['tipo_llamada'] }}</span>
+                                    </td>
+                                    <td>
+                                        <span
+                                            class="text-center ml-2 font-semibold">{{ $item->origenLlamada['origen_llamada'] }}</span>
+                                    </td>
+                                    <td>
+                                        <span
+                                            class="text-center ml-2 font-semibold">{{ date_format($item->created_at, 'D M Y, g:m a') }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="grid grid-cols-2 items-center">
+                                            <div wire:click='showDeleteModal({{ $item->id }})'>
+                                                <x-button-action-delete title="Eliminar" />
+                                            </div>
+                                            <div wire:click="editModal({{ $item->id }})">
+                                                <x-button-action-edit title="Editar" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div
+                        class="px-4 py-3 text-xs font-semibold tracking-wide text-white uppercase border-none  sm:grid-cols-9">
+                        {{ $data->links() }}
+                    </div>
                 </div>
-            </div>
+            @else
+                <h2 class="text-center text-lg text-gray-500"><b>Ups!!</b> <br> Nada que mostrar.</h2>
+                <div class="rounded-md border-none bg-indigo-50 shadow-sm">
+                    <div class="flex justify-center rounded-lg bg-white shadow-sm">
+                        <div class="justify-items-center object-cover">
+                            <img class="h-60 w-60 bg-cover object-center" src="{{ url('img/empty.gif') }}"
+                                alt="Sin registros">
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 
@@ -145,7 +159,8 @@
                                         <x-jet-label for="telefono" value="{{ __('Telefono') }}" />
                                         <x-jet-input id="telefono" class="block mt-1 w-full" type="text"
                                             name="telefono" autocomplete="telefono" wire:model.defer="telefono"
-                                            maxlength="9" minlength="9" x-mask="9999-9999" placeholder="9999-9999" />
+                                            maxlength="9" minlength="9" x-mask="9999-9999"
+                                            placeholder="9999-9999" />
                                         <x-jet-input-error for='telefono' />
                                     </div>
 
@@ -250,13 +265,14 @@
                                             class="text-xs block mt-1 h-8 w-full" name="tipo_llamada_id"
                                             id="tipo_llamada_id" utocomplete="tipo_llamada_id">
                                             @foreach ($tipo_llamadas as $item)
-                                            @if ($item->id == $tipo_llamada_id)
-                                                <option @selected(true) class="text-xs" value="{{ $item->id }}">
-                                                {{ $item->tipo_llamada }}</option>
-                                            @else
-                                                <option class="text-xs" value="{{ $item->id }}">
-                                                {{ $item->tipo_llamada }}</option>
-                                            @endif
+                                                @if ($item->id == $tipo_llamada_id)
+                                                    <option @selected(true) class="text-xs"
+                                                        value="{{ $item->id }}">
+                                                        {{ $item->tipo_llamada }}</option>
+                                                @else
+                                                    <option class="text-xs" value="{{ $item->id }}">
+                                                        {{ $item->tipo_llamada }}</option>
+                                                @endif
                                             @endforeach
                                         </x-input-select>
                                         <x-jet-input-error for='tipo_llamada_id' />
@@ -269,13 +285,14 @@
                                             class="text-xs block mt-1 h-8 w-full" name="origen_llamada_id"
                                             id="origen_llamada_id" utocomplete="origen_llamada_id" old>
                                             @foreach ($origen_llamadas as $item)
-                                            @if ($item->id == $origen_llamada_id)
-                                                <option @selected(true) class="text-xs" value="{{ $item->id }}">
-                                                    {{ $item->origen_llamada }}</option>
-                                            @else
-                                            <option class="text-xs" value="{{ $item->id }}">
-                                                {{ $item->origen_llamada }}</option>
-                                            @endif
+                                                @if ($item->id == $origen_llamada_id)
+                                                    <option @selected(true) class="text-xs"
+                                                        value="{{ $item->id }}">
+                                                        {{ $item->origen_llamada }}</option>
+                                                @else
+                                                    <option class="text-xs" value="{{ $item->id }}">
+                                                        {{ $item->origen_llamada }}</option>
+                                                @endif
                                             @endforeach
                                         </x-input-select>
                                         <x-jet-input-error for='origen_llamada_id' />
@@ -284,9 +301,9 @@
                                     <!-- Nombre -->
                                     <div class="center align-items-lg-center px-6 mt-3">
                                         <x-jet-label for="nombre" value="{{ __('Nombre') }}" />
-                                        <x-jet-input id="nombre" class="block mt-1 w-full"
-                                            type="text" name="nombre" autocomplete="nombre"
-                                            wire:model.defer="nombre" placeholder="Ej: José Antonio" />
+                                        <x-jet-input id="nombre" class="block mt-1 w-full" type="text"
+                                            name="nombre" autocomplete="nombre" wire:model.defer="nombre"
+                                            placeholder="Ej: José Antonio" />
                                         <x-jet-input-error for='nombre' />
                                     </div>
 
