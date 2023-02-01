@@ -60,7 +60,7 @@ php artisan serve
 Por defecto, redirige a la siguiente url: `http://127.0.0.1:8000`
 
 ```
-Nota: Credenciales para iniciar sessión : moralesalvaro308@gmail.com | 12345678
+Nota: Credenciales para iniciar sessión : root@gmail.com | 12345678. Si los estilos no se muestran correctamente, debe generarlos con: npm run build
 ```
 
 # Referencias: :memo:
